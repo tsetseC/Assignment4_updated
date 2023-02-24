@@ -1,0 +1,146 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+   <head>
+
+     <meta charset="utf-8">
+     <title>My 4IR Web</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    </head>
+
+     <!-- <style type="text/css">
+        
+      @media (min-width: 768px) {
+     html {
+          font-size: 16px;
+        }
+      }
+      
+      .container {
+        max-width: 960px;
+      }
+      
+      .pricing-header {
+        max-width: 700px;
+      }
+      
+      .card-deck .card {
+        min-width: 220px;
+      } -->
+
+    </style> 
+    <body id="bg" style="background-image: url('{% static  "images/futuristic.jpg" %}');" >
+      <header>
+                {%  if request.user.is_authenticated %}
+                <p style="color:white">Hello, {{ request.user.username}}</p>
+
+                {% endif %}
+            
+              <div>   <nav class="my-2 my-md-0 mr-md-3"  >
+                {%  if request.user.is_authenticated %}
+                <a class= "p-2 text-white" href="{% url 'admin:index' %}">Admin</a>
+                <a class= "p-2 text-white" href="{%  url 'usersapp:u_login' %}">Login</a>
+                {% endif %}
+            
+              <a class= "p-2 text-white" href="{% url 'index' %}">Home</a>
+              <!-- <a class= "p-2 text-white" href="{% url 'usersapp:articles' %}">Articles</a> -->
+              <a class= "p-2 text-white" href="{% url 'admin:index' %}">Admin</a>
+              
+              
+                    
+              {%  if user.is_authenticated %}
+              <a class= "p-2 text-white" href="{% url 'logout' %}">Logout</a>
+
+              {% else %}
+              <a class= "p-2 text-white" href="{%  url 'usersapp:u_login' %}">Login</a>
+              <a class="btn btn-outline-primary" href="{% url 'usersapp:register' %}">Register</a>      
+              {% endif %}
+
+        </nav>
+      </div>
+    </header>
+  <br>
+  <br>
+  <section>
+    <div class="content">
+      <a href="#"  class="logo" ><b>4IR</b></a>
+      <p >Our interest focuses on the impact of 4IR in the world today.</p>
+      <p style="color:white"><b>HAVE YOUR SAY..!</b></p>
+      <p> Register on our website Now!</p>
+      <p>Login and Create Your Very Own Article on 4IR</p>
+      
+      <a href="{% url 'usersapp:articles' %}" class="btn">Articles</a>
+     </div>
+  <div class="container"></div>
+</section>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+     integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" 
+     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script >
+       let container=document.querySelector('.container');
+       for(let i=1;i<=99;i++){
+        let dot = document.createElement('div');
+        dot.classList.add('element');
+        container.appendChild(dot);
+       }
+     let dotAll=document.querySelectorAll('.element');
+     let animation=anime.timeline({
+     targets:dotAll,
+     easing: 'easeInOutExpo',
+     loop:true,
+     delay:anime.stagger(100,{grid:[10,10],from:'center'})
+    })
+    animation
+    .add({
+       rotateZ:180,
+       translateY:anime.stagger(-20,{grid:[10,10],from:'center',axis:'y'}),
+       translateX:anime.stagger(-20,{grid:[10,10],from:'center',axis:'x'}),
+       opacity:1,
+    
+    })
+    .add({
+       borderRadius:50,
+    
+    })
+    .add({
+       scale:0.2,
+       opacity:0.2,
+    
+    })
+    .add({
+       rotateZ:180,
+       translateY:anime.stagger(0,{grid:[10,10],from:'center',axis:'y'}),
+       translateX:anime.stagger(0,{grid:[10,10],from:'center',axis:'x'}),
+       opacity:1,
+    
+    })
+    .add({
+        scale:1,
+        borderRadius:0,
+    })
+    .add({
+        rotateZ:-90,
+    })
+     
+
+        </script> -->
+       
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{%  endblock %}
+</html>
+

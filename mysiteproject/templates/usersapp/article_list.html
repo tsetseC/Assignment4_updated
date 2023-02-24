@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+ <meta charset="utf-8">
+ <title>Articles</title>
+
+ </head>
+ <body>
+  <header>
+    <a class= "p-2 text-black" href="{% url 'special' %}">Home</a>
+</header>
+  <!-- <h1>Article List</h1>
+   <div class="articles">
+    
+    {% for article in articles  %}
+     <div class="article">
+
+       <h2><a href="#">{{article.title}}</a></h2>
+       <p>{{article.snippet}}</p>
+       <p>{{article.date}}</p>
+    
+    </div>
+
+    {% endfor %}
+   </div> -->
+  
+
+   <br>
+   <br>
+    <center>
+        <h2 style="color:white">CRUD Operations</h2>
+    <hr/>
+    <a href="{% url 'u_create'    %}">Add User Record</a>
+         <table border="1">
+            <tr>
+         <th>User</th>
+         <th>Title</th>
+         <th>Slug</th>
+         <th>Body</th>
+         <th>Date</th>
+        </tr>
+
+
+        <tr>
+            {% for article_list in Article %}
+              {% if article_list.user == request.user.username %}
+                <tr>
+                  
+                 <td>{{ article_list.id}}</td>
+                 <td>{{ article_list.title}}</td>
+                 <td>{{ article_list.slug}}</td>
+                 <td>{{ article_list.body}}</td>
+                 <td>{{ article_list.date}}</td>
+                 <td>
+                  <a href="/edit/{{ article_list.id }}">Edit</a>
+                  <a href="/delete/{{ article_list.id }}">Delete</a>
+                 </td>
+
+                </tr>
+
+                {% endif  %}
+            {% endfor  %}
+
+        </tr>
+    
+
+
+    </table>
+    </center>
+
+
+
+ </body>
+</html>

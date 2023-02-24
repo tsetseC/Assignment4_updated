@@ -1,0 +1,33 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div class="jumbotron">
+    {%  if registered %}
+        <h1>Thank you for registering</h1>
+        <a href="{% url 'index' %}" class="btn" style="color:black"><b>Home</b></a>
+
+    {% else %}
+        <h1>Register here</h1>
+        <h3>TFill out the form:</h3>
+
+        <form  enctype="multipart/form-data"  method="POST">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <input type="submit" name=""  value="Register">
+
+
+        </form>
+
+    {%  endif  %}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records</title>
+</head>
+<body>
+    <header>
+        <a class= "p-2 text-white" href="{% url 'special' %}">Home</a>
+    </header>
+<center>
+    
+        <h3>Add New User Record</h3>
+        <hr/>  
+        <form action="{% url 'usersapp:create_user' %}" method="POST" >
+            {% csrf_token     %}
+         <table border="1">
+        <tr>
+         <td>User</td>
+         <td><input type="text" placeholder="User's name .." name="user"></td>
+         </tr>
+
+        <tr>
+         <td>Title</td>
+         <td><input type="text" placeholder="Title .." name="title"></td>
+        </tr>
+
+        <tr>
+            <td>Slug</td>
+            <td><input type="text" placeholder="Slug .." name="slug"></td>
+        </tr>
+    
+        <tr>
+            <td>Body</td>
+            <td><input type="text" placeholder="Body .." name="body"></td>
+        </tr>
+
+        <tr>
+            <td>Date</td>
+            <td><input type="text" placeholder="Date" name="date"></td>
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Insert Record"/>
+    
+   
+    <hr/>
+    {% if messages %}
+
+     {% for result in messages %}
+
+    <b style="color:green">{{result}}</b>
+
+    {% endfor %}
+    {% endif %}
+
+
+</form>    
+<a href="{% url 'article_list' %}">Article list </a>
+</center>
+    
+</body>
+</html>

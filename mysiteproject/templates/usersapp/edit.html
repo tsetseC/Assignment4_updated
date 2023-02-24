@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit-Update</title>
+</head>
+<body>
+    <center>
+        
+        <!-- <h1>Edit & Update Student Record</h1>
+        <h2>The Username is {{Article.user}}</h2>
+        <hr/> -->
+        <form method="POST" action="/update/{{Article.id}}">
+        
+            {% csrf_token    %}
+            <table border="1">
+
+            <tr>
+                <td>User's Name</td>
+                <td><input type="text" name="user" value="{{Article.user}}"></td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title" value="{{Article.title}}"></td>
+            </tr>
+            <tr>
+                <td>Slug</td>
+                <td><input type="text" name="slug" value="{{Article.slug}}"></td>
+            </tr> 
+            <tr>
+                <td>Body</td>
+                <td><input type="text" name="body" value="{{Article.body}}"></td>
+            </tr>
+            <tr>   
+                <td>Date</td>
+                <td><input type="text" name="date"  value="{{Article.date}}"></td>
+                
+            </tr>
+
+        </table>
+         <br>
+        <button type="submit" >Update</button>
+        
+        <hr/>
+        {% if messages %} 
+        {% for result in messages %}
+
+        {{result}}
+        {% endfor %}
+        {% endif %}
+    </form>    
+    <a href="{% url 'article_list' %}">Article list </a>
+    </center>
+</body>
+</html>
