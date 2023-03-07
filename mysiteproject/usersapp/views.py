@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
-from .forms import UserForm,UserProfileInfoForm
-from usersapp.models import Article
+from .forms import UserEditForm, UserForm,UserProfileInfoForm
+from usersapp.models import Article,Comment
 
 
 from django.contrib.auth import authenticate,login,logout
@@ -30,6 +30,19 @@ def articles(request):
 def home_page(request):
     return render(request,'usersapp/home_page.html')
 
+def info(request):
+    comment=Comment.objects.all()
+    return render(request,'usersapp/info.html',{'Comment':comment})
+
+def info_view(request):
+    if request.method=='POST':
+        if request.POST.get('commenter') and request.POST.get('body') :
+            com=Comment()
+            com.commenter=request.POST.get('commenter')
+            com.body=request.POST.get('body')
+            com.save()
+   
+    return redirect('/info')
 
 #logout
 @login_required
@@ -116,22 +129,6 @@ def u_create(request):
     return render(request, 'usersapp/Create.html')
 
 
-def u_insert(request):
-    if request.method=='POST':
-        if request.POST.get('user') and request.POST.get('title') and request.POST.get('slug') and request.POST.get('body') and request.POST.get('date'):
-            saveus=Article()
-            saveus.user=request.POST.get('user')
-            saveus.title=request.POST.get('title')
-            saveus.slug=request.POST.get('slug')
-            saveus.body=request.POST.get('body')
-            saveus.date=request.POST.get('date')
-            saveus.save()
-            messages.success(request,"The Record"+ saveus.user + "Is saved successfully..!!")
-            return render(request,'usersapp/article_list')
-
-        else:
-            return render(request,'usersapp/Create.html')
-
 def create_user(request):
     if request.method=='POST':
         if request.POST.get('user') and request.POST.get('title') and request.POST.get('slug') and request.POST.get('body') and request.POST.get('date'):
@@ -142,7 +139,7 @@ def create_user(request):
             saveus.body=request.POST.get('body')
             saveus.date=request.POST.get('date')
             saveus.save()
-            messages.success(request,"The Record"+ saveus.user + "Is saved successfully..!!")
+            
             return HttpResponseRedirect(reverse('article_list'))
 
         else:
@@ -162,21 +159,17 @@ def create_user(request):
 #         return render(request,"edit.html",{"Article":user_update})
 def edit(request, id):  
     article = Article.objects.get(id=id)  
-    return render(request,'usersapp/edit.html', {'Article':article})  
+    return render(request,'usersapp/edit.html', {'article':article})  
     
 def update(request, id):  
     article = Article.objects.get(id=id) 
-    if request.method=="POST":
-        form = UserForm(request.POST, instance = article)  
-        if form.is_valid():  
-            form.save()  
-            return redirect("/article_list")  
-        return render(request, 'usersapp/edit.html', {'Article':article})  
+    form = UserEditForm(request.POST, instance = article)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("/articles")  
+    return render(request, 'usersapp/edit.html', {'article':article})  
 
 def destroy(request, id):  
     article = Article.objects.get(id=id) 
-    if article == "null":
-        print("nothing")
-    else:
-        article.delete()  
-    return Article("/article_list")
+    article.delete()  
+    return redirect("/articles")

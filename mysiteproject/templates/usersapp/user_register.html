@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>register</title>
 </head>
-<body>
+<body id="bg" style="background-image: url('{% static  "images/futuristic.jpg" %}');">
     
 <div class="jumbotron">
     {%  if registered %}
-        <h1>Thank you for registering</h1>
-        <a href="{% url 'index' %}" class="btn" style="color:black"><b>Home</b></a>
+        <h1  style="color:white">Thank you for registering</h1>
+        <a href="{% url 'index' %}" class="btn" style="color:white"><b>Home</b></a>
+
+        <a class= "p-2 text-white" style="color:white" href="{%  url 'usersapp:u_login' %}"><b>Login</b></a>
 
     {% else %}
-        <h1>Register here</h1>
-        <h3>TFill out the form:</h3>
+        <a href="{% url 'index' %}" class="btn" style="color:white"><b>Home</b></a>
+        <h1 style="color:white">Register here</h1>
+        <h3 style="color:white" >TFill out the form:</h3>
+        
 
-        <form  enctype="multipart/form-data"  method="POST">
+        <form  style="color:white" enctype="multipart/form-data"  method="POST">
             {% csrf_token %}
             {{ user_form.as_p }}
             {{ profile_form.as_p }}
-            <input type="submit" name=""  value="Register">
+            <input style="color:white;background-color: blue;" type="submit" name=""  value="Register">
 
 
         </form>

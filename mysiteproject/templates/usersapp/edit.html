@@ -1,40 +1,50 @@
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Edit-Update</title>
 </head>
-<body>
+<body id="bg" style="background-image: url('{% static  "images/futuristic.jpg" %}');" >
+    <br>
+    
+    <header>
+        <a class= "p-2 text-white" href="{% url 'special' %}"><b>Home</b></a>
+    </header>
+    <br>
+    <br>
     <center>
         
         <!-- <h1>Edit & Update Student Record</h1>
         <h2>The Username is {{Article.user}}</h2>
         <hr/> -->
-        <form method="POST" action="/update/{{Article.id}}">
+        <form method="POST" action="/update/{{article.id}}">
         
             {% csrf_token    %}
             <table border="1">
 
             <tr>
-                <td>User's Name</td>
-                <td><input type="text" name="user" value="{{Article.user}}"></td>
+                <td style="color:white">User's Name</td>
+                <td><input type="text" name="user" value="{{article.user}}"></td>
             </tr>
             <tr>
-                <td>Title</td>
-                <td><input type="text" name="title" value="{{Article.title}}"></td>
+                <td style="color:white">Title</td>
+                <td><input type="text" name="title" value="{{article.title}}"></td>
             </tr>
             <tr>
-                <td>Slug</td>
-                <td><input type="text" name="slug" value="{{Article.slug}}"></td>
+                <td style="color:white">Slug</td>
+                <td><input type="text" name="slug" value="{{article.slug}}"></td>
             </tr> 
             <tr>
-                <td>Body</td>
-                <td><input type="text" name="body" value="{{Article.body}}"></td>
+                <td style="color:white">Body</td>
+                <td><input type="text" name="body" value="{{article.body}}"></td>
             </tr>
             <tr>   
-                <td>Date</td>
-                <td><input type="text" name="date"  value="{{Article.date}}"></td>
+                <td style="color:white">Date</td>
+                <td><input type="text" name="date"  value="{{article.date}}"></td>
                 
             </tr>
 
@@ -50,7 +60,11 @@
         {% endfor %}
         {% endif %}
     </form>    
-    <a href="{% url 'article_list' %}">Article list </a>
+    <a href="{% url 'article_list' %}" style="color:white;background-color: blue;font-size: large;"><b>Article list</b> </a>
     </center>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </html>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>about4IR</title>
+  
+</head>
+<body style="background-image: url('{% static  "images/futuristic.jpg" %}');">
+    <header>
+        <a href="{% url 'index' %}" class="btn" style="color:white"><b>Home</b></a>
+    </header>
+    
+        <center>
+        <h1 style="color:white"><b>About 4IR</b></h1>
+    </center>
+
+
+
+<center>
+    <br>
+    <br>
+ <p style="color:white">The Fourth Industrial Revolution (4IR) refers to our current period of rapid technological 
+    growth which is fundamentally changing the way we live. By drawing on a multitude of advanced 
+    technologies, 4IR blurs the lines between the physical, digital, and biological worlds.</p>
+<p style="color:white">The Fourth Industrial Revolution is about more than just technology-driven change; it is an opportunity to
+     help everyone, including leaders, policy-makers and people from all income groups and nations, to harness 
+     converging technologies in order to create an inclusive, human-centred future.</p>
+</center>
+<div class="row">
+        
+    <div class="col" ><p id="human"><img src="{% static 'images/origin.jpg' %}"  class="img-thumbnail" ></div>
+    <div class="col" ><p id="human"><img src="{% static 'images/edu3.jpg' %}"    class="img-thumbnail"></div>
+    <div class="col" ><p id="human"><img src="{% static 'images/heal4.jpg' %}"   class="img-thumbnail"></div>
+    <div class="col" ><p id="human"><img src="{% static 'images/motion.jpg' %}"  class="img-thumbnail"></div>   
+  </div>
+  <div class="row">
+    <div class="col"><p style="color:white">Attachment, empathy, sensation seeking and engagement are the many varied qualities 
+        in humans that shape our relationships with robots, Robots contribute to that relationship 
+        through their independence and emotionally interactive designs.</p></div>
+
+    <div class="col" ><p style="color:white">The Fourth Industrial Revolution impacts in evolving teaching strategies so as to unlock 
+      an individual student potential and prepare students with the skills needed to shape the future through innovation 
+      supported by technology.
+      Today’s students must be able to not only adapt to the 4th Industrial Revolution but be positioned to shape
+      themselves through creative problem solving and open thinking, such will
+       also advance them to make the most of applying technology in new ways.</p></div>
+
+      <div class="col" style="text-align: right;color:white">Virtual reality is increasingly being used to train patients and assist
+        with pain management. The use of both AR and VR have been proven to have positive impacts on immersive learning  and 
+       healing across the healthcare spectrum. Medical assistants can help patients recover from strokes while they are anywhere in
+      the world by using a combination of robotics and virtual-reality devices.
+    </div>
+    <div class="col"><p style="color:white">Latest innovations in robotics have shown
+        that robots can be a part of human lives. Robots are assisting humans in every type of business, 
+        contributing to higher quality products with shorter downtime.</p>
+</div>
+  </div>
+
+<br>
+<br>
+
+<form action="{% url 'usersapp:info_view' %}" method="POST" >
+  {% csrf_token     %}
+
+
+
+
+
+  <h5 style="color:blue"><b>Was the above info helpful?</b><h5> 
+   <p style="color:white"> Comment down below..!</p>
+  <input type="text" placeholder="Commenter ..." name="commenter">
+
+  <!-- </h3 style="color:white">Body</h3> -->
+  <input type="text" placeholder="Body .." name="body">
+
+  <input style="background-color: blue;color:antiquewhite" type="submit" value="Submit"/>
+
+
+</form>    
+
+<br>
+<br>
+<div style="color:white">{% for info in Comment %}
+    <div>
+      <p>{{ info.commenter }}--
+      {{ info.body }}</p><br>
+    </div>
+    {% endfor %}
+
+  </div>
+
+
+
+
+
+
+</body  >
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
+
+
+
+

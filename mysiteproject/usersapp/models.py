@@ -22,4 +22,10 @@ class Article(models.Model):
 
     # def snippet(self):
     #     return self.body[:50] + '...'
+class Comment(models.Model):
+    commenter=models.CharField(max_length=50)
+    body=models.TextField()
+    
 
+    def __str__(self):
+        return self.body
